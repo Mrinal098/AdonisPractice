@@ -4,9 +4,11 @@ import User from 'App/Models/User'
 
 export default class UserController {
 
-    public async update({request, response, params, auth}: HttpContextContract){
+    public async update({request, response, auth}: HttpContextContract){
 
         await auth.authenticate()
+
+        const user = auth.user
 
         const validationSchema = schema.create({
             name: schema.string(),
@@ -23,13 +25,13 @@ export default class UserController {
             schema: validationSchema,
         })
 
-        const user = await User.findOrFail(params.id)
+        const userData = await User.findOrFail(user?.id)
         
-        user.name = userDetails.name
-        user.email = userDetails.email
-        user.phone_number = userDetails.phone_number
+        userData.name = userDetails.name
+        userData.email = userDetails.email
+        userData.phone_number = userDetails.phone_number
 
-        user.save()
+        userData.save()
 
         return response.status(200).json({
             message: "User data updated"

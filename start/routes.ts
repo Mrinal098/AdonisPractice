@@ -21,10 +21,17 @@
 import Route from '@ioc:Adonis/Core/Route'
 import AuthController from 'App/Controllers/Http/AuthController'
 import UserController from 'App/Controllers/Http/UserController'
+import ProfilesController from 'App/Controllers/Http/ProfilesController'
 
 Route.group(()=>{
   Route.post('/signUp', 'AuthController.signup')
   Route.post('/login', 'AuthController.login')
-  Route.put('/updateUser/:id', 'UserController.update')
+  Route.put('/updateUser', 'UserController.update')
+
+  Route.group(()=>{
+    Route.post('/createProfile', 'ProfilesController.createProfile')
+    Route.get('/profile', 'ProfilesController.getProfile')
+    Route.put('/updateProfile', 'ProfilesController.updateProfile')
+  }).prefix('user')
 }).prefix('api')
 
