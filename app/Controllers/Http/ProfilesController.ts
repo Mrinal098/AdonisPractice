@@ -3,7 +3,7 @@ import { schema } from '@ioc:Adonis/Core/Validator'
 import Profile from 'App/Models/Profile'
 
 export default class ProfilesController {
-    public async getProfile({request, response, auth}: HttpContextContract){
+    public async getProfile({response, auth}: HttpContextContract){
 
         await auth.authenticate()
 

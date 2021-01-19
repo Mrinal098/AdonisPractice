@@ -19,9 +19,6 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import AuthController from 'App/Controllers/Http/AuthController'
-import UserController from 'App/Controllers/Http/UserController'
-import ProfilesController from 'App/Controllers/Http/ProfilesController'
 
 Route.group(()=>{
   Route.post('/signUp', 'AuthController.signup')
