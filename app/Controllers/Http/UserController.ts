@@ -11,11 +11,11 @@ export default class UserController {
         const user = auth.user
 
         const validationSchema = schema.create({
-            name: schema.string(),
-            phone_number: schema.string({}, [
+            name: schema.string.optional(),
+            phone_number: schema.string.optional({}, [
                 rules.maxLength(10),
             ]),
-            email: schema.string({}, [
+            email: schema.string.optional({}, [
                 rules.email(),
                 rules.unique({ table: 'users', column: 'email'}),
             ]),
@@ -27,9 +27,9 @@ export default class UserController {
 
         const userData = await User.findOrFail(user?.id)
         
-        userData.name = userDetails.name
-        userData.email = userDetails.email
-        userData.phone_number = userDetails.phone_number
+        userData.name = userDetails.name == undefined ? userData.name : userDetails.name 
+        userData.email = userDetails.email == undefined ? userData.email : userDetails.email
+        userData.phone_number = userDetails.phone_number == undefined ? userData.phone_number : userDetails.phone_number
 
         userData.save()
 

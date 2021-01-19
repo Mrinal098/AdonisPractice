@@ -23,8 +23,8 @@ export default class ProfilesController {
         const user = auth.user
 
         const validationSchema = schema.create({
-            age: schema.number(),
-            gender: schema.string(),
+            age: schema.number.optional(),
+            gender: schema.string.optional(),
         })
 
         const profileDetails = await request.validate({
