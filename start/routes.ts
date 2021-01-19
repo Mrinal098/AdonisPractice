@@ -29,7 +29,6 @@ Route.group(()=>{
   Route.put('/updateUser', 'UserController.update')
 
   Route.group(()=>{
-    Route.post('/createProfile', 'ProfilesController.createProfile')
     Route.get('/profile', 'ProfilesController.getProfile')
     Route.put('/updateProfile', 'ProfilesController.updateProfile')
   }).prefix('user')
